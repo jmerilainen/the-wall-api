@@ -4,8 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joonas Meriläinen",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  }
 }

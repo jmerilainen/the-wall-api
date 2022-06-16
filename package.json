@@ -10,7 +10,11 @@
   },
   "author": "Joonas Meriläinen",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "devDependencies": {
+    "@types/node": "^16.11.41",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "eslint": "^8.17.0",

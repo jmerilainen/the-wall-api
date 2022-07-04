@@ -10,7 +10,8 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "migrate": "tsc && node ./dist/db/migrate.js"
   },
   "author": "Joonas Meriläinen",
   "license": "MIT",

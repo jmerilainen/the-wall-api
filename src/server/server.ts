@@ -5,6 +5,15 @@ const createServer = () => {
   const router = createRouter();
 
   const server = http.createServer(async (request, response) => {
+
+    const { method, url } = request;
+
+    console.log(`Request [${method}]: ${url}`);
+
+    /**
+     * Handle errors
+     */
+
     request.on("error", (error) => {
       console.error(error);
       response.statusCode = 400;
@@ -23,17 +32,17 @@ const createServer = () => {
         })
       );
       console.error(`Error [${method}]: ${url} - ${error.message}`);
-    });
-
-    const { method, url } = request;
-
-    console.log(`Request URL [${method}]: ${url}`);
+    };
 
     process.on("uncaughtException", handleException);
 
     response.on("close", () =>
       process.removeListener("uncaughtException", handleException)
     );
+
+    /**
+     * Handle CORS
+     */
 
     if (request.headers.origin) {
       response.setHeader("Access-Control-Allow-Origin", request.headers.origin);
@@ -50,6 +59,10 @@ const createServer = () => {
       return;
     }
 
+    /**
+     * Handle form data
+     */
+
     const buffers = [];
 
     for await (const chunk of request) {
@@ -59,6 +72,10 @@ const createServer = () => {
     const bufferData = Buffer.concat(buffers).toString();
 
     const params = new URLSearchParams(bufferData);
+
+    /**
+     * Handle routing & controllers
+     */
 
     if (method && url) {
       const currentRoute = router.resolve(method, url);
@@ -89,6 +106,10 @@ const createServer = () => {
         return;
       }
     }
+
+    /**
+     * Handle default response
+     */
 
     response.writeHead(404, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ message: "Not found" }));

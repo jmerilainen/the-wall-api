@@ -10,7 +10,9 @@ const create = async (content: string) => {
 };
 
 const all = async (limit = 100) => {
-  return await db.query(`SELECT * FROM ${TABLE} LIMIT $1`, [limit]);
+  return await db.query(`SELECT * FROM ${TABLE} ORDER BY id ASC LIMIT $1`, [
+    limit,
+  ]);
 };
 
 const get = async (id: number) => {

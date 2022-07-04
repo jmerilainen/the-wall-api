@@ -4,7 +4,7 @@ import post from "../models/post.model";
 
 const index: Controller = async () => {
   try {
-    const all = await post.all().then((res) => res.rows);
+    const all = await post.all();
 
     return json(all);
   } catch (error) {
@@ -22,7 +22,7 @@ const create: Controller = async ({ params }) => {
   }
 
   try {
-    const item = await post.create(content).then((res) => res.rows[0]);
+    const item = await post.create(content);
 
     return json(item);
   } catch (error) {
@@ -35,7 +35,7 @@ const create: Controller = async ({ params }) => {
 const show: Controller = async ({ params }) => {
   const id = Number(params.get("id"));
 
-  const item = await post.get(id).then((res) => res.rows[0]);
+  const item = await post.get(id);
 
   if (!item) {
     return json(
@@ -57,7 +57,7 @@ const update: Controller = async ({ params }) => {
     throw new Error("Param 'content' is missing");
   }
 
-  const item = await post.update(id, content).then((res) => res.rows[0]);
+  const item = await post.update(id, content);
 
   return json(item);
 };

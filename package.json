@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "tsc && node ./dist/index.js",
-    "dev": "tsc --watch & nodemon --inspect ./dist/index.js",
+    "clean": "rm -rf dist",
+    "start": "npm run clean && tsc && node ./dist/index.js",
+    "dev": "npm run clean && tsc --watch & nodemon --inspect ./dist/index.js",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",

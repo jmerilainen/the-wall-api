@@ -15,7 +15,7 @@ const createServer = () => {
       console.error(error);
     });
 
-    process.on("uncaughtException", function (error) {
+    const handleException = (error: Error) => {
       response.writeHead(400, { "Content-Type": "application/json" });
       response.end(
         JSON.stringify({
@@ -28,6 +28,12 @@ const createServer = () => {
     const { method, url } = request;
 
     console.log(`Request URL [${method}]: ${url}`);
+
+    process.on("uncaughtException", handleException);
+
+    response.on("close", () =>
+      process.removeListener("uncaughtException", handleException)
+    );
 
     if (request.headers.origin) {
       response.setHeader("Access-Control-Allow-Origin", request.headers.origin);

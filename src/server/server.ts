@@ -29,6 +29,21 @@ const createServer = () => {
 
     console.log(`Request URL [${method}]: ${url}`);
 
+    if (request.headers.origin) {
+      response.setHeader("Access-Control-Allow-Origin", request.headers.origin);
+    }
+
+    if (method === "OPTIONS") {
+      response.statusCode = 204;
+      response.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET,HEAD,PUT,PATCH,POST,DELETE"
+      );
+      response.setHeader("Content-Length", "0");
+      response.end();
+      return;
+    }
+
     const buffers = [];
 
     for await (const chunk of request) {

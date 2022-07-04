@@ -97,7 +97,9 @@ const createServer = () => {
         const res = await currentRoute.controller({ request, params });
 
         if (!res) {
-          response.end("");
+          response.statusCode = 204;
+          response.setHeader("Content-Length", "0");
+          response.end();
           return;
         }
 

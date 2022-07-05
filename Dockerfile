@@ -1,25 +1,49 @@
-FROM node:16-alpine as build
+# Base image
+FROM node:16-alpine as base
+
+# Install all dependencies
+FROM base as deps
 
 WORKDIR /app
 
-# Install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
 
 RUN npm install
 
-# Build the app
+# Prune dev dependencies to get production dependencies
+FROM base as production-deps
+
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+ADD package.json ./
+ADD package-lock.json ./
+
+RUN npm prune --omit=dev
+
+# Build with dev dependencies
+FROM base as build
+
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+
+ADD package.json ./
+ADD package-lock.json ./
 COPY tsconfig.json ./
 COPY ./src ./src
 
 RUN npm run build
 
-FROM build
+# Start app with only production dependencies
+FROM base
 
-# Use only builded files in final container
+ENV NODE_ENV=production
 
 WORKDIR /app
 
+COPY --from=production-deps /app/node_modules ./node_modules
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/package.json ./
 

@@ -2,18 +2,21 @@ FROM node:16-alpine as build
 
 WORKDIR /app
 
-# Start command as per package.json
-
 # Install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
+
+RUN npm install
+
+# Build the app
 COPY tsconfig.json ./
 COPY ./src ./src
-RUN npm install
-# build the app
+
 RUN npm run build
 
 FROM build
+
+# Use only builded files in final container
 
 WORKDIR /app
 

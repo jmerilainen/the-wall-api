@@ -1,6 +1,7 @@
-import { Client } from "pg";
+import { Pool } from "pg";
 
-const client = new Client(process.env.DATABASE_URL || {
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   database: process.env.DB_NAME,
@@ -8,4 +9,9 @@ const client = new Client(process.env.DATABASE_URL || {
   port: parseInt(process.env.DB_PORT || "5432"),
 });
 
-export default client;
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+});
+
+
+export default pool;

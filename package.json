@@ -5,13 +5,13 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist",
-    "start": "npm run clean && tsc && node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "dev": "npm run clean && tsc --watch & nodemon --inspect ./dist/index.js",
-    "build": "tsc",
+    "build": "npm run clean && tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
     "test": "jest",
-    "migrate": "tsc && node ./dist/db/migrate.js"
+    "db:migrate": "node ./dist/db/migrate.js"
   },
   "author": "Joonas Meriläinen",
   "license": "MIT",
@@ -22,12 +22,14 @@
     "@types/jest": "^28.1.4",
     "@types/node": "^16.11.41",
     "@types/pg": "^8.6.5",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "eslint": "^8.17.0",
     "jest": "^28.1.2",
     "nodemon": "^2.0.16",
     "prettier": "^2.7.1",
+    "supertest": "^6.2.4",
     "ts-jest": "^28.0.5",
     "typescript": "^4.7.3"
   },

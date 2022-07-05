@@ -5,7 +5,6 @@ const createServer = () => {
   const router = createRouter();
 
   const server = http.createServer(async (request, response) => {
-
     const { method, url } = request;
 
     console.log(`Request [${method}]: ${url}`);

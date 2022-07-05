@@ -16,5 +16,5 @@ updates:
     labels:
       - "dependencies"
     ignore:
-      - dependency-name: "node"
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]

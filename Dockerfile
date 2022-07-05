@@ -1,24 +1,23 @@
-FROM node:16-alpine
-
-EXPOSE 8080
-
-ENV \
-    DB_HOST='' \
-    DB_USER='' \
-    DB_NAME='' \
-    DB_PASSWORD='' \
-    DB_PORT=''
+FROM node:16-alpine as build
 
 WORKDIR /app
-ADD . ./
 
 # Start command as per package.json
 
 # Install app dependencies
 COPY package.json ./
+COPY package-lock.json ./
+COPY tsconfig.json ./
 COPY ./src ./src
 RUN npm install
 # build the app
 RUN npm run build
+
+FROM build
+
+WORKDIR /app
+
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/package.json ./
 
 CMD ["npm", "start"]

@@ -1,19 +1,23 @@
-import { Client } from "pg";
-import client from ".";
+import type { Pool } from "pg";
+import db from ".";
 import posts from "./migrations/posts";
 
-(async (client: Client) => {
-  await client.connect();
+(async (db: Pool) => {
+  const client = await db.connect();
+
+  console.log("Starting migrations...");
 
   try {
     await client.query("BEGIN");
-    await client.query(posts.UP);
     console.log(`Migrating table "posts"`);
+    await client.query(posts.UP);
     await client.query("COMMIT");
+    console.log("Done");
   } catch (e) {
     await client.query("ROLLBACK");
     throw e;
   } finally {
-    client.end();
+    client.release();
+    await db.end()
   }
-})(client).catch((e) => console.log(e));
+})(db).catch((e) => console.log(e));

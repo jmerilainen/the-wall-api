@@ -24,22 +24,6 @@ const createServer = () => {
       console.error(error);
     });
 
-    const handleException = (error: Error) => {
-      response.writeHead(400, { "Content-Type": "application/json" });
-      response.end(
-        JSON.stringify({
-          message: error.message,
-        })
-      );
-      console.error(`Error [${method}]: ${url} - ${error.message}`);
-    };
-
-    process.on("uncaughtException", handleException);
-
-    response.on("close", () =>
-      process.removeListener("uncaughtException", handleException)
-    );
-
     /**
      * Handle CORS
      */
@@ -94,17 +78,30 @@ const createServer = () => {
           params.set(prop, groups[prop]);
         }
 
-        const res = await currentRoute.controller({ request, params });
+        try {
+          const res = await currentRoute.controller({ request, params });
 
-        if (!res) {
-          response.statusCode = 204;
-          response.setHeader("Content-Length", "0");
-          response.end();
-          return;
+          if (!res) {
+            response.statusCode = 204;
+            response.setHeader("Content-Length", "0");
+            response.end();
+            return;
+          }
+
+          response.writeHead(res.status, { "Content-Type": res.type });
+          response.end(res.data);
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            response.writeHead(400, { "Content-Type": "application/json" });
+            response.end(
+              JSON.stringify({
+                message: error.message,
+              })
+            );
+            console.error(`Error [${method}]: ${url} - ${error.message}`);
+          }
         }
 
-        response.writeHead(res.status, { "Content-Type": res.type });
-        response.end(res.data);
         return;
       }
     }

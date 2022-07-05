@@ -1,5 +1,5 @@
 # Base image
-FROM node:16-alpine as base
+FROM node:18-alpine as base
 
 # Install all dependencies
 FROM base as deps

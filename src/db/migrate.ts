@@ -18,6 +18,6 @@ import posts from "./migrations/posts";
     throw e;
   } finally {
     client.release();
-    await db.end()
+    await db.end();
   }
 })(db).catch((e) => console.log(e));

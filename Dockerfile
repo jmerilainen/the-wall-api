@@ -6,8 +6,7 @@ FROM base as deps
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+ADD package.json package-lock.json ./
 
 RUN npm install
 
@@ -17,22 +16,23 @@ FROM base as production-deps
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
-ADD package.json ./
-ADD package-lock.json ./
+
+ADD package.json package-lock.json ./
 
 RUN npm prune --omit=dev
 
 # Build with dev dependencies
 FROM base as build
 
+ENV NODE_ENV=production
+
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 
-ADD package.json ./
-ADD package-lock.json ./
-COPY tsconfig.json ./
-COPY ./src ./src
+ADD package.json package-lock.json ./
+ADD tsconfig.json ./
+ADD ./src ./src
 
 RUN npm run build
 

@@ -43,6 +43,21 @@ const createServer = () => {
     }
 
     /**
+     * Check content-type
+     */
+
+    if (request.headers["content-type"]?.includes("multipart/form-data")) {
+      response.writeHead(400, { "Content-Type": "application/json" });
+      response.end(
+        JSON.stringify({
+          message: "Content-type is not supported",
+        })
+      );
+
+      return;
+    }
+
+    /**
      * Handle form data
      */
 

@@ -45,11 +45,15 @@ Use your local Postgres or via docker-compose by running `docer-compose up`.
 
 ## Database
 
-Export a database string for database connection
+Export a database string for database connection, for example:
+
+```sh
+$ export DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/main'
+```
 
 **Migrations**
 
-`npm run db:migrate` to run database migrations
+`npm run db:migrate` to run database migrations.
 
 ## Testing
 

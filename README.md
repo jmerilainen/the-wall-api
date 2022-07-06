@@ -10,7 +10,7 @@ This is a example of Node REST API built from scratch and with no dependecies (e
 
 `src/controllers` http controllers for routes.
 
-## Quick install
+## Quick install with Docker
 
 Run
 
@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000)
 | GET    | /          | Hello World       | -               |
 | GET    | /posts     | List all posts    | -               |
 | POST   | /posts     | Create a new post | content: string |
-| GET    | /posts/:id | Get single post   |                 |
+| GET    | /posts/:id | Get single post   | -               |
 | PATCH  | /posts/:id | Modify post       | content: string |
 
 ## Development

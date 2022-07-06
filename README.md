@@ -1,6 +1,8 @@
-# the-wall-api
+# The WALL API
 
 This is a example of Node REST API built from scratch and with no dependecies (except `node-postgres`).
+
+Demo: https://the-wall-api.fly.dev (API), https://the-wall.fly.dev (Client)
 
 **Strucutre**
 
@@ -65,4 +67,4 @@ $ export DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/main'
 
 ## Deployment
 
-Service is hosted in `fly.io`. Deployment is made via GitHub actions on push to `main` branch.
+Service is hosted in [fly.io](https://fly.io). Deployment is made via GitHub actions on push to `main` branch.

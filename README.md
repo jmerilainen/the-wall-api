@@ -17,7 +17,9 @@ Demo: https://the-wall-api.fly.dev (API), https://the-wall.fly.dev (Client)
 Run
 
 ```sh
-$ docker-compose -f docker-compose.local.yml up
+$ npm run docker:serve
+
+# equals: docker-compose -f docker-compose.local.yml up
 ```
 
 Open [http://localhost:3000](http://localhost:3000)

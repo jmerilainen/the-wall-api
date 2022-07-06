@@ -11,7 +11,8 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
     "test": "jest",
-    "db:migrate": "node ./dist/db/migrate.js"
+    "db:migrate": "node ./dist/db/migrate.js",
+    "docker:serve": "docker-compose -f docker-compose.local.yml up"
   },
   "author": "Joonas Meriläinen",
   "license": "MIT",

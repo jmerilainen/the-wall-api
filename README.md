@@ -4,6 +4,8 @@ This is an example of Node REST API built from scratch and with no dependencies 
 
 Demo: https://the-wall-api.fly.dev (API), https://the-wall.fly.dev (Client)
 
+A barebone client for the API is found in [`the-wall-client`](https://github.com/jmerilainen/the-wall-client).
+
 **Strucutre**
 
 `src/server` contains logic for the server and simple router.

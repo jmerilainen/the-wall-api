@@ -1,12 +1,12 @@
 # The WALL API
 
-This is a example of Node REST API built from scratch and with no dependecies (except `node-postgres`).
+This is an example of Node REST API built from scratch and with no dependencies (except `node-postgres`).
 
 Demo: https://the-wall-api.fly.dev (API), https://the-wall.fly.dev (Client)
 
 **Strucutre**
 
-`src/server` contains logic for server and simple router.
+`src/server` contains logic for the server and simple router.
 
 `src/models` interacts with postgress database models.
 
@@ -34,12 +34,12 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Development
 
-**Requiremenst**
+**Requirements**
 
 - `node 16.x`
-- `docker`
+- `docker` or `postgres`
 
-`npm install` to install dependecies
+`npm install` to install dependencies
 
 `npm run dev` to run dev server
 

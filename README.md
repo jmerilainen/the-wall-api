@@ -81,25 +81,14 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Testing
 
-### Unit
+### Unit & integration
 
-For unit tests the project uses Jest. Tests are in `src` directory among other
-source files prefixed with `*.test.(ts|tsx)`.
+For unit & integration tests the project uses Jest. Tests are in `test` directory.
 
 To run unit tests run command
 
 ```sh
 npm run test
-```
-
-### E2E
-
-Project uses the Cypress for End-to-End (E2E) tests. Tests are in `cypress/integartion` directory.
-
-To run e2e tests, run command
-
-```sh
-npm run test:e2e
 ```
 
 ### Type checks

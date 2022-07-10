@@ -45,37 +45,37 @@ Open [http://localhost:3000](http://localhost:3000)
 
 1. Install dependecies
 
-  ```sh
-  npm install
-  ```
+    ```sh
+    npm install
+    ```
 
 2. Start Postgres database
 
-  ```sh
-  npm run docker:db
+    ```sh
+    npm run docker:db
 
-  # or use a local service
-  ```
+    # or use a local service
+    ```
 
 3. Export envs
 
-  ```sh
-  export DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/main'
+    ```sh
+    export DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/main'
 
-  # or modify according to your local database
-  ```
+    # or modify according to your local database
+    ```
 
 3. Run database migrations
 
-  ```sh
-  npm run db:migrate
-  ```
+    ```sh
+    npm run db:migrate
+    ```
 
 4. Start development server with watch mode
 
-  ```sh
-  npm run dev
-  ```
+    ```sh
+    npm run dev
+    ```
 
 5. Start coding
 

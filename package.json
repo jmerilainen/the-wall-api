@@ -16,7 +16,7 @@
     "db:migrate": "node ./dist/db/migrate.js",
     "docker:db": "docker-compose up",
     "docker:serve": "docker-compose -f docker-compose.local.yml up",
-    "docker:ci": "docker-compose -f docker-compose.ci.yml up"
+    "docker:ci": "docker-compose -f docker-compose.ci.yml up -d"
   },
   "author": "Joonas Meriläinen",
   "license": "MIT",

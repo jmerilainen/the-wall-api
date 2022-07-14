@@ -21,6 +21,10 @@ const create: Controller = async ({ params }) => {
     throw new Error("Param 'content' is missing");
   }
 
+  if (new TextEncoder().encode(content).length > 256) {
+    throw new Error("Param 'content' is too big");
+  }
+
   try {
     const item = await post.create(content);
 

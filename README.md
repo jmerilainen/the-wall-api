@@ -6,6 +6,8 @@ Demo: https://the-wall-api.fly.dev (API), https://the-wall.fly.dev (Client).
 
 A barebone client for the API is found in [`the-wall-client`](https://github.com/jmerilainen/the-wall-client).
 
+*For fun: A [Bun](https://bun.sh) (a new js runtime) version of this is in [`the-wall-api-bun`](https://github.com/jmerilainen/the-wall-api-bun).*
+
 ## About
 
 ### Strucutre
